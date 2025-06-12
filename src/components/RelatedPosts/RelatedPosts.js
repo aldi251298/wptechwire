@@ -23,20 +23,23 @@ const GET_RELATED_POSTS = gql`
 `;
 
 export default function RelatedPosts({ categories, currentPostId }) {
-  // Jika post tidak punya kategori, jangan tampilkan apa-apa
-  if (!categories || categories.length === 0) {
-    return null;
-  }
-
-  // Ambil ID dari kategori pertama untuk dijadikan acuan
-  const categoryId = categories[0].id;
+  // Ambil ID dari kategori pertama untuk dijadikan acuan.
+  // Pastikan categoryId terdefinisi sebelum digunakan di useQuery.
+  const categoryId = categories?.[0]?.id;
 
   const { data, loading, error } = useQuery(GET_RELATED_POSTS, {
+    // Pastikan useQuery hanya dijalankan jika categoryId ada
+    skip: !categoryId,
     variables: {
-      categoryIn: [categoryId], // Cari post di dalam kategori ini
+      categoryIn: categoryId ? [categoryId] : [], // Cari post di dalam kategori ini
       notIn: [currentPostId],    // Kecualikan post yang sedang dibaca
     },
   });
+
+  // Jika post tidak punya kategori, jangan tampilkan apa-apa
+  if (!categories || categories.length === 0 || !categoryId) {
+    return null;
+  }
 
   if (loading) return <p>Loading related posts...</p>;
   if (error) return <p>Error loading related posts.</p>;

@@ -25,7 +25,8 @@ const GET_FOOTER_MENUS = gql`
 `;
 
 export default function Footer() {
-  const { data, loading, error } = useQuery(GET_FOOTER_MENUS);
+  // Menghapus 'error' karena tidak digunakan
+  const { data, loading } = useQuery(GET_FOOTER_MENUS);
 
   const footerMenu1 = data?.footerMenu1?.nodes ?? [];
   const footerMenu2 = data?.footerMenu2?.nodes ?? [];

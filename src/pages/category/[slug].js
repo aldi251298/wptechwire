@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
 import styles from './category.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react'; // Menghapus useEffect karena tidak digunakan
 
 const CATEGORY_POSTS_QUERY = gql`
   query CategoryPosts($slug: ID!, $after: String) {
@@ -29,6 +29,34 @@ const CATEGORY_POSTS_QUERY = gql`
     }
   }
 `;
+
+// Pastikan Anda mengganti URL placeholder ini dengan URL situs WordPress Anda yang sebenarnya.
+export async function getStaticPaths() {
+  const res = await fetch(`https://your-wordpress-site.com/wp-json/wp/v2/categories`);
+  const categories = await res.json();
+
+  const paths = categories.map(cat => ({
+    params: { slug: cat.slug },
+  }));
+
+  return { paths, fallback: false };
+}
+
+// Pastikan Anda mengganti URL placeholder ini dengan URL situs WordPress Anda yang sebenarnya.
+export async function getStaticProps({ params }) {
+  const res = await fetch(`https://your-wordpress-site.com/wp-json/wp/v2/categories?slug=${params.slug}`);
+  const category = await res.json();
+
+  const postsRes = await fetch(`https://your-wordpress-site.com/wp-json/wp/v2/posts?categories=${category[0].id}`);
+  const posts = await postsRes.json();
+
+  return {
+    props: {
+      category: category[0],
+      posts,
+    },
+  };
+}
 
 export default function CategoryPage() {
   const router = useRouter();
