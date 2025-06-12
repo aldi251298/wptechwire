@@ -1,0 +1,77 @@
+/* src/components/ShareButtons/ShareButtons.module.css */
+.shareContainer {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.shareTitle {
+  font-family: var(--font-poppins);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.5rem;
+}
+
+.buttonsGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.shareButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* Membuat tombol menjadi bulat */
+  color: #fff;
+  font-size: 1.2rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.shareButton:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Warna spesifik untuk setiap platform */
+.facebook   { background-color: #1877F2; }
+.twitter    { background-color: #1DA1F2; }
+.linkedin   { background-color: #0A66C2; }
+.pinterest  { background-color: #E60023; }
+.threads    { background-color: #000000; }
+.tumblr     { background-color: #36465D; }
+.vk         { background-color: #4680C2; }
+.bluesky    { background-color: #0285FF; }
+.flipboard  { background-color: #E12828; }
+.scoopit    { background-color: #6aaa3e; }
+.email      { background-color: #888888; }
+
+.copyLink {
+  background-color: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.copyLink.copied {
+  background-color: #16a34a; /* Warna hijau saat berhasil dicopy */
+  color: #fff;
+  border-color: #16a34a;
+}
+
+.copyFeedback {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #16a34a;
+}

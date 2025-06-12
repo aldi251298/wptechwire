@@ -1,7 +1,26 @@
+const { withFaust, getWpHostname } = require("@faustwp/core");
+const { createSecureHeaders } = require("next-secure-headers");
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  /* config options here */
+const config = {
+	reactStrictMode: true,
+	sassOptions: {
+		includePaths: ["node_modules"],
+	},
+	images: {
+		domains: [getWpHostname()],
+	},
+ 
+	async headers() {
+		return [
+			{
+				source: "/:path*",
+				headers: createSecureHeaders({
+					xssProtection: false,
+				}),
+			},
+		];
+	},
 };
-
-export default nextConfig;
+ 
+module.exports = withFaust(config);

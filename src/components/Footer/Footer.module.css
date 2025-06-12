@@ -1,0 +1,109 @@
+/* src/components/Footer/Footer.module.css */
+
+.footer {
+  background-color: #1a1a1a; /* Latar belakang gelap */
+  color: #a0a0a0; /* Warna teks abu-abu terang */
+  padding: 4rem 0 0;
+  font-size: 0.9rem;
+}
+
+.footerContent {
+  max-width: var(--max-width-container);
+  padding-left: var(--padding-container);
+  padding-right: var(--padding-container);
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap; /* Agar responsif di mobile */
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 3rem;
+}
+
+.footerColumn {
+  flex: 1; /* Setiap kolom mencoba mengambil ruang yang sama */
+  min-width: 200px; /* Lebar minimum sebelum pindah baris */
+}
+
+.footerLogo {
+  max-height: 40px;
+  margin-bottom: 1.5rem;
+}
+
+.footerColumn p {
+  line-height: 1.7;
+  padding-right: 1rem;
+}
+
+.columnTitle {
+  color: #ffffff; /* Warna judul kolom putih */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.8rem;
+}
+
+.footerLinks a {
+  color: #a0a0a0;
+  transition: color 0.2s ease-in-out;
+}
+
+.footerLinks a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.socialLinks a {
+  color: #a0a0a0;
+  font-size: 1.4rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.socialLinks a:hover {
+  color: #ffffff;
+}
+
+.footerBottom {
+  border-top: 1px solid #333;
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #777;
+  font-size: 0.85rem;
+}
+/* === RESPONSIVE UNTUK FOOTER === */
+
+@media (max-width: 768px) {
+  .footerContent {
+    /* Tumpuk semua kolom secara vertikal */
+    flex-direction: column;
+    /* Pusatkan kontennya */
+    text-align: center;
+  }
+
+  /* Pusatkan logo dan ikon sosial media */
+  .footerColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footerColumn p {
+    padding-right: 0; /* Hapus padding yang tidak perlu */
+  }
+}

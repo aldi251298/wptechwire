@@ -1,0 +1,158 @@
+/* src/components/Comments/Comments.module.css (Versi Modern & Ringkas) */
+
+.commentsSection {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.sectionTitle {
+  font-size: 1.5rem; /* Ukuran judul dikecilkan */
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #111827;
+}
+
+/* === Daftar Komentar === */
+.commentList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem; /* Jarak antar komentar sedikit dikurangi */
+}
+
+.comment {
+  display: flex;
+  gap: 1rem; /* Jarak antara avatar dan konten */
+}
+
+.avatar {
+  width: 40px; /* Avatar diperkecil */
+  height: 40px;
+  border-radius: 50%;
+  margin-top: 0.25rem;
+}
+
+.commentBody {
+  flex: 1;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.authorName {
+  font-weight: 600; /* Sedikit lebih tebal */
+  color: #111827;
+}
+
+.commentDate {
+  font-size: 0.8rem;
+  color: #9ca3af; /* Warna dibuat lebih pudar */
+}
+
+.commentContent {
+  color: #4b5563; /* Warna teks isi komentar */
+  line-height: 1.7;
+}
+
+.commentContent p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* === Form Komentar (Versi Baru: Kecil dan Modern) === */
+
+.commentForm {
+  margin-top: 4rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.formTitle {
+  font-size: 1.3rem; /* Judul sedikit lebih kecil */
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.formSubtitle,
+.formGroup label {
+  display: none; /* Kita tetap sembunyikan ini untuk tampilan bersih */
+}
+
+.formGroup {
+  margin-bottom: 1rem; /* Jarak antar field dikurangi */
+}
+
+/* Ini adalah style kunci untuk input field yang baru */
+.formGroup textarea,
+.formGroup input {
+  width: 100%;
+  padding: 0.65rem 1rem; /* Padding vertikal dikurangi agar lebih pendek */
+  border: 1px solid #d1d5db; /* Border tipis di sekelilingnya */
+  border-radius: 8px; /* Sudut yang melengkung halus */
+  font-size: 0.95rem; /* Ukuran font di dalam input dikecilkan */
+  font-family: inherit;
+  background-color: #f9fafb; /* Latar belakang abu-abu sangat muda */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formGroup textarea:focus,
+.formGroup input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Warna border biru saat aktif */
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Efek 'glow' modern */
+}
+
+.userInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem; /* Jarak antar input nama dan email dikurangi */
+}
+
+.submitButton {
+  background-color: #2563eb; /* Warna biru yang lebih cerah */
+  color: white;
+  border: none;
+  padding: 0.7rem 1.25rem; /* Tombol lebih kecil */
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.submitButton:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Gaya untuk pesan status tidak berubah */
+.errorMessage, .successMessage {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+}
+.errorMessage {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+.successMessage {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+@media (max-width: 640px) {
+  .userInfo {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

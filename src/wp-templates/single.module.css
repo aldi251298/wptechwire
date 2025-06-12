@@ -1,0 +1,159 @@
+/* src/wp-templates/single.module.css (Final untuk Layout Berita) */
+
+.container {
+  max-width: var(--max-width-container);
+  margin: 2rem auto;
+  padding: 0 var(--padding-container);
+}
+
+/* Judul */
+.title {
+  font-family: var(--font-poppins);
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #111827;
+  margin: 0 0 1rem 0;
+}
+
+/* Wadah utama untuk seluruh baris meta */
+.metaContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Kotak untuk avatar dan info penulis */
+.authorBox {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.authorAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.authorDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorName {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  color: #111827;
+  font-size: 1rem;
+}
+
+/* Wadah untuk tanggal dan waktu baca */
+.postDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.metaSeparator {
+  font-size: 0.8rem;
+}
+
+/* Gaya untuk waktu baca */
+.readingTime {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Layout utama (konten dan sidebar) */
+.mainLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 3rem;
+  margin-top: 1.5rem;
+}
+
+/* Kolom Konten Utama */
+.postContent {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #374151;
+}
+
+/* Gambar Utama */
+.featuredImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+/* == CSS Defensif untuk Konten dari WordPress (SANGAT PENTING) == */
+/* Aturan ini DIBAWAH .postContent untuk prioritas yang lebih tinggi */
+/* === ATURAN BARU UNTUK SPASI PARAGRAF === */
+
+/* Beri jarak bawah untuk setiap paragraf di dalam konten */
+.postContent p {
+  margin-bottom: 1.5rem; /* Anda bisa sesuaikan nilai ini (misal: 1.25rem atau 2rem) */
+  line-height: 1.9; /* Kita juga bisa pastikan line-height ada di sini */
+}
+
+/* Bonus: Mencegah paragraf terakhir memiliki jarak bawah yang tidak perlu */
+.postContent p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Kita juga bisa menambahkan jarak untuk list */
+.postContent ul,
+.postContent ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.postContent * {
+  word-break: break-word;
+}
+
+/* Aturan umum untuk semua media yang disisipkan */
+.postContent figure,
+.postContent .wp-block-image img {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Aturan caption gambar */
+.postContent figcaption {
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: -1.25rem; /* Tarik sedikit ke atas agar lebih dekat dengan gambar */
+  margin-bottom: 2rem;
+}
+
+/* Aturan untuk blok kode dan tabel */
+.postContent pre, .postContent table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+/* ... (style lain untuk table, pre, dll. bisa ditambahkan di sini) ... */
+
+
+/* Media query untuk mobile */
+@media (max-width: 820px) {
+  .mainLayout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .title {
+    font-size: 2.2rem;
+  }
+}

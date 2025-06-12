@@ -1,0 +1,42 @@
+/* src/components/Header/Nav.module.css */
+
+.primaryNav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* Menghilangkan bulatan/angka pada list */
+  display: flex; /* Membuat item menu berjajar ke samping */
+  gap: 1.5rem; /* Memberi jarak antar item menu */
+}
+
+.primaryNav a {
+  color: #555; /* Warna teks menu */
+  text-decoration: none; /* Menghilangkan garis bawah */
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative; /* Diperlukan untuk efek hover */
+  transition: color 0.2s ease-in-out;
+}
+
+/* Efek saat kursor mouse di atas link */
+.primaryNav a:hover {
+  color: #0070f3; /* Warna teks berubah */
+}
+
+/* Membuat garis bawah muncul saat di-hover */
+.primaryNav a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #0070f3;
+  bottom: 0;
+  left: 0;
+  transform: scaleX(0); /* Sembunyikan garisnya */
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.primaryNav a:hover::after {
+  transform: scaleX(1); /* Tampilkan garisnya dari kiri ke kanan */
+  transform-origin: bottom left;
+}

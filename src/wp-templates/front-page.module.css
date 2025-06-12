@@ -1,0 +1,233 @@
+/* src/wp-templates/front-page.module.css */
+.container {
+  max-width: var(--max-width-container);
+  margin: 2rem auto;
+  padding: 0 var(--padding-container);
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #111827;
+  border-bottom: 2px solid #111827;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* === HERO SECTION === */
+.heroSection {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* Kolom kiri 2 bagian, kanan 1 bagian */
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.heroMain {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.heroMain a { display: block; height: 100%; }
+.heroMainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.heroMain:hover .heroMainImage {
+  transform: scale(1.05);
+}
+.heroOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+}
+.heroMainTitle {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+}
+.heroSide {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.heroSideItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+.heroSideItem a { display: flex; align-items: center; gap: 1rem; color: inherit; text-decoration: none; }
+.heroSideImage {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.heroSideTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* === MAIN CONTENT LAYOUT === */
+.mainContentLayout {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 3rem;
+}
+
+/* === LATEST POSTS === */
+.latestPostsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 kolom untuk daftar post */
+  gap: 2rem;
+}
+.postCard {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cardImage {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+.cardContent {
+  padding: 1rem;
+}
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+}
+.cardTitle a { color: inherit; text-decoration: none; }
+.cardTitle a:hover { text-decoration: underline; }
+.cardMeta {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-top: 0.75rem;
+}
+.loadMoreButton {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #111827;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.loadMoreButton:disabled {
+  background-color: #9ca3af;
+}
+
+/* === SIDEBAR === */
+.sidebar .widget {
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+.sidebar .widgetTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+.popularPostsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.popularPostsList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-weight: 600;
+}
+.popularPostsList a { color: inherit; text-decoration: none; line-height: 1.4; }
+.popularPostsList a:hover { text-decoration: underline; }
+.postNumber {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #d1d5db;
+  line-height: 1;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .heroSection, .mainContentLayout, .latestPostsGrid {
+    grid-template-columns: 1fr; /* Semua layout jadi 1 kolom */
+  }
+  .sidebar {
+    margin-top: 3rem;
+  }
+  .heroSide {
+    flex-direction: row; /* Post kecil jadi baris */
+    flex-wrap: wrap;
+  }
+  .heroSideItem {
+    flex-basis: calc(50% - 0.5rem);
+  }
+}
+@media (max-width: 576px) {
+  .heroSide {
+    flex-direction: column;
+  }
+}
+/* === RESPONSIVE UNTUK HOMEPAGE === */
+
+@media (max-width: 992px) {
+  /* Ubah semua layout grid utama menjadi satu kolom */
+  .heroSection, .mainContentLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    margin-top: 3rem; /* Beri jarak atas untuk sidebar yang sekarang di bawah */
+  }
+
+  /* Buat post kecil di hero menjadi 2 kolom */
+  .heroSide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Di ponsel, daftar post terbaru juga jadi 1 kolom */
+  .latestPostsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Di layar sangat kecil, post kecil di hero juga jadi 1 kolom */
+  .heroSide {
+    grid-template-columns: 1fr;
+  }
+
+  .heroMainTitle {
+    font-size: 1.8rem;
+  }
+}

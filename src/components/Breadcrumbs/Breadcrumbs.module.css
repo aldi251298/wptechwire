@@ -1,0 +1,24 @@
+/* src/components/Breadcrumbs/Breadcrumbs.module.css */
+.breadcrumbs ol {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0; /* Jarak ke judul di bawahnya */
+}
+.breadcrumbs li {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.breadcrumbs a {
+  color: #6b7280;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumbs a:hover {
+  color: #1d4ed8;
+}
+.separator {
+  margin: 0 0.5rem;
+  color: #9ca3af;
+}
