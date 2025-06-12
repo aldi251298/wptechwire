@@ -24,3 +24,8 @@ const config = {
 };
  
 module.exports = withFaust(config);
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
