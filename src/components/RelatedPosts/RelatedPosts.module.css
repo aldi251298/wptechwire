@@ -26,7 +26,7 @@
   background-color: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  overflow: hidden; /* Penting agar gambar tidak keluar dari sudut melengkung */
+  overflow: hidden;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
@@ -41,9 +41,8 @@
 
 .featuredImage {
   width: 100%;
-  /* Trik CSS modern untuk menjaga rasio gambar tetap sama */
-  aspect-ratio: 16 / 9; 
-  object-fit: cover; /* Memastikan gambar mengisi area tanpa distorsi */
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -57,6 +56,7 @@
   line-height: 1.5;
   margin: 0;
   color: #111827;
+  word-break: break-word; /* Tambahkan ini */
 }
 
 .cardTitle a {
@@ -66,4 +66,15 @@
 
 .cardTitle a:hover {
   text-decoration: underline;
+}
+
+/* Tidak ada media query tambahan yang diperlukan karena auto-fill/minmax sudah responsif */
+@media (max-width: 600px) {
+  .sectionTitle {
+    font-size: 1.5rem; /* Kecilkan ukuran judul di mobile */
+    text-align: center;
+  }
+  .cardTitle {
+    font-size: 1rem; /* Kecilkan ukuran font judul kartu */
+  }
 }

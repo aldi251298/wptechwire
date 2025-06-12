@@ -1,8 +1,8 @@
 /* src/components/Footer/Footer.module.css */
 
 .footer {
-  background-color: #1a1a1a; /* Latar belakang gelap */
-  color: #a0a0a0; /* Warna teks abu-abu terang */
+  background-color: #1a1a1a;
+  color: #a0a0a0;
   padding: 4rem 0 0;
   font-size: 0.9rem;
 }
@@ -13,15 +13,15 @@
   padding-right: var(--padding-container);
   margin: 0 auto;
   display: flex;
-  flex-wrap: wrap; /* Agar responsif di mobile */
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 2rem;
   padding-bottom: 3rem;
 }
 
 .footerColumn {
-  flex: 1; /* Setiap kolom mencoba mengambil ruang yang sama */
-  min-width: 200px; /* Lebar minimum sebelum pindah baris */
+  flex: 1;
+  min-width: 200px;
 }
 
 .footerLogo {
@@ -35,7 +35,7 @@
 }
 
 .columnTitle {
-  color: #ffffff; /* Warna judul kolom putih */
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
@@ -90,20 +90,40 @@
 
 @media (max-width: 768px) {
   .footerContent {
-    /* Tumpuk semua kolom secara vertikal */
     flex-direction: column;
-    /* Pusatkan kontennya */
     text-align: center;
   }
 
-  /* Pusatkan logo dan ikon sosial media */
   .footerColumn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: unset; /* Reset min-width agar bisa mengecil penuh */
+    width: 100%; /* Ambil lebar penuh */
   }
 
   .footerColumn p {
-    padding-right: 0; /* Hapus padding yang tidak perlu */
+    padding-right: 0;
+    max-width: 90%; /* Batasi lebar paragraf agar tidak terlalu panjang di mobile */
+  }
+  .columnTitle {
+    font-size: 1rem; /* Kecilkan judul kolom */
+    margin-bottom: 1rem;
+  }
+  .footerLinks li {
+    font-size: 0.9rem; /* Kecilkan font link */
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 2rem 0 0; /* Kurangi padding utama footer */
+  }
+  .footerContent {
+    gap: 1.5rem; /* Kurangi gap antar kolom */
+    padding-bottom: 2rem;
+  }
+  .footerLogo {
+    max-height: 35px; /* Kecilkan logo */
   }
 }

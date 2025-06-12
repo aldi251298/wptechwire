@@ -4,11 +4,13 @@
   align-items: center;
   list-style: none;
   padding: 0;
-  margin: 0 0 1rem 0; /* Jarak ke judul di bawahnya */
+  margin: 0 0 1rem 0;
+  flex-wrap: wrap; /* Tambahkan ini agar wrap di mobile */
 }
 .breadcrumbs li {
   font-size: 0.85rem;
   font-weight: 500;
+  flex-shrink: 0; /* Jangan biarkan item menyempit */
 }
 .breadcrumbs a {
   color: #6b7280;
@@ -21,4 +23,18 @@
 .separator {
   margin: 0 0.5rem;
   color: #9ca3af;
+}
+
+/* === RESPONSIVE UNTUK BREADCRUMBS === */
+@media (max-width: 600px) {
+  .breadcrumbs ol {
+    justify-content: center; /* Pusatkan breadcrumbs di mobile */
+    gap: 0.25rem; /* Kurangi gap */
+  }
+  .breadcrumbs li {
+    font-size: 0.75rem; /* Ukuran font lebih kecil */
+  }
+  .separator {
+    margin: 0 0.2rem; /* Kurangi margin separator */
+  }
 }

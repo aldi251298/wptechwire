@@ -1,6 +1,6 @@
 import { getWordPressProps, WordPressTemplate } from "@faustwp/core";
-// Menghapus import * as templates from '../wp-templates'; karena tidak digunakan secara langsung
- 
+// Menghapus import * as templates dari sini karena tidak digunakan secara langsung
+
 export default function Page(props) {
 	return <WordPressTemplate {...props} />;
 }

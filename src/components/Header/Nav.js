@@ -1,6 +1,6 @@
 // src/components/Header/Nav.js
 
-import { useQuery, gql } from '@apollo/client'; // <-- Perubahan di sini
+import { useQuery, gql } from '@apollo/client';
 import Link from 'next/link';
 import styles from './Nav.module.css';
 
@@ -20,9 +20,10 @@ export default function Nav() {
   const { data, loading, error } = useQuery(GET_MENU_BY_LOCATION, {
     variables: { location: 'FOXIZ_MAIN' },
   });
-console.log('Menu Loading:', loading);
-  console.log('Menu Error:', error);
-  console.log('Menu Data:', data);
+  // Console logs ini bisa dihapus di production
+  // console.log('Menu Loading:', loading);
+  // console.log('Menu Error:', error);
+  // console.log('Menu Data:', data);
   if (loading) return <p>Loading menu...</p>;
   if (error) return <p>Error loading menu: {error.message}</p>;
   

@@ -2,7 +2,7 @@
 
 import { gql, useQuery } from '@apollo/client';
 import Link from 'next/link';
-import Adsense from '../Adsense/Adsense'; // Pastikan menggunakan komponen kustom kita
+import Adsense from '../Adsense/Adsense';
 import { useRouter } from 'next/router';
 import styles from './Sidebar.module.css';
 

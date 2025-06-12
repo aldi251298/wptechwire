@@ -6,6 +6,7 @@
 .title {
   font-size: 1.75rem;
   margin-bottom: 1.5rem;
+  word-break: break-word;
 }
 .grid {
   display: grid;
@@ -35,6 +36,7 @@
   margin: 0;
   color: #0070f3;
   text-decoration: none;
+  word-break: break-word;
 }
 .cardTitle a {
   text-decoration: none;
@@ -57,4 +59,33 @@
 }
 .loadMore:hover {
   background-color: #005bb5;
+}
+
+/* === RESPONSIVE UNTUK GRID ARSIP === */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .cardImage {
+    height: 150px;
+  }
+  .cardTitle {
+    font-size: 1rem;
+  }
+  .cardDate {
+    font-size: 0.75rem;
+  }
+  .loadMore {
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+  .title {
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .container {
+    padding: 1rem;
+  }
 }

@@ -88,7 +88,10 @@ export default function FrontPage() {
   const heroPosts = data?.heroPosts?.nodes ?? [];
   const latestPostsData = data?.latestPosts;
   const allPopularPosts = data?.popularPosts?.nodes ?? [];
-  const techPosts = data?.technology?.nodes ?? [];
+  // Perbaiki: query untuk 'technology' tidak ada di GET_HOMEPAGE_DATA
+  // Asumsi: 'techPosts' akan diambil melalui komponen CategoryBlockTechnology itu sendiri atau query terpisah
+  // Untuk saat ini, saya akan mengomentari atau mengasumsikan posts kosong jika tidak ada sumber
+  const techPosts = []; // Atau Anda perlu menambahkan query terpisah untuk ini.
 
   const sortedPopularPosts = [...allPopularPosts]
     .sort((a, b) => (b.viewCount?.viewCount || 0) - (a.viewCount?.viewCount || 0))
@@ -138,7 +141,9 @@ export default function FrontPage() {
             ))}
           </div>
         </section>
-        <CategoryBlockTechnology posts={techPosts} />
+        {/* CategoryBlockTechnology harus menerima props `posts` dari sumber yang valid,
+            saat ini `techPosts` kosong karena tidak ada query yang mengambilnya. */}
+        <CategoryBlockTechnology posts={techPosts} /> 
 
         {/* === KONTEN UTAMA & SIDEBAR === */}
         <div className={styles.mainContentLayout}>

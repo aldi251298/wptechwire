@@ -94,7 +94,7 @@ export default function Comments({ comments = [], postId }) {
             <textarea
               id="comment"
               name="comment"
-              placeholder="Your comment... *" // <-- TAMBAHKAN INI
+              placeholder="Your comment... *"
               value={formData.comment}
               onChange={handleInputChange}
               required
@@ -108,7 +108,7 @@ export default function Comments({ comments = [], postId }) {
                 id="author"
                 type="text"
                 name="author"
-                placeholder="Name *" // <-- TAMBAHKAN INI
+                placeholder="Name *"
                 value={formData.author}
                 onChange={handleInputChange}
                 required
@@ -120,7 +120,7 @@ export default function Comments({ comments = [], postId }) {
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Email *" // <-- TAMBAHKAN INI
+                placeholder="Email *"
                 value={formData.email}
                 onChange={handleInputChange}
                 required

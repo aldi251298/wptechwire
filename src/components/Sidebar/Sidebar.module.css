@@ -2,8 +2,6 @@
 
 .sidebar {
   width: 100%;
-  
-
 }
   
 .widget {
@@ -26,7 +24,7 @@
 .stickyWidget {
   position: -webkit-sticky;
   position: sticky;
-  top: 100px; /* Jarak dari atas, sesuaikan dengan tinggi header */
+  top: 100px;
 }
 
 /* Styling untuk daftar postingan populer */
@@ -43,8 +41,8 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  padding-bottom: 1rem; /* Beri ruang untuk garis pemisah */
-  border-bottom: 1px solid #e5e7eb; /* Garis pemisah tipis */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 /* Aturan khusus untuk menghapus garis pada item terakhir */
@@ -60,6 +58,7 @@
   font-weight: 700;
   color: #d1d5db;
   line-height: 1.2;
+  flex-shrink: 0; /* Pastikan nomor tidak menyempit */
 }
 
 .postInfo {
@@ -88,8 +87,8 @@
   width: 100%;
   min-height: 250px;
   border-radius: 8px;
-  overflow: hidden; /* Tetap penting */
-  position: relative; /* Kunci untuk menempatkan placeholder */
+  overflow: hidden;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,21 +112,21 @@
   right: 0;
   bottom: 0;
   display: flex;
-  justify-content: center; /* Pusatkan label secara horizontal */
-  z-index: 1; /* Pastikan di atas pola latar */
+  justify-content: center;
+  z-index: 1;
 }
 
 /* Label 'Advertisement' di bagian atas */
 .placeholderLabel {
   position: absolute;
-  top: 10px; /* Jarak dari atas */
+  top: 10px;
   font-family: var(--font-poppins);
   font-size: 0.7rem;
   font-weight: 500;
   color: #9ca3af;
   text-transform: uppercase;
   letter-spacing: 1px;
-  background-color: #f3f4f6; /* Latar belakang agar garis tidak menembus teks */
+  background-color: #f3f4f6;
   padding: 0 0.5rem;
   display: flex;
   align-items: center;
@@ -147,7 +146,7 @@
 
 /* Targetkan komponen AdSense itu sendiri saat sudah terisi */
 .adContainer ins[data-ad-status="filled"] {
-  background-color: transparent !important; /* Hapus latar jika iklan muncul */
+  background-color: transparent !important;
 }
 
 /* Sembunyikan placeholder jika iklan berhasil dimuat */
@@ -161,9 +160,29 @@
   background-color: transparent;
   border: none;
 }
+
 /* Nonaktifkan sticky di mobile karena sidebar pindah ke bawah */
 @media (max-width: 820px) {
   .stickyWidget {
-    position: static; /* Kembalikan ke posisi normal */
+    position: static;
+    margin-top: 2rem; /* Tambahkan sedikit margin agar tidak terlalu mepet dengan konten utama */
+  }
+}
+
+/* Penyesuaian font dan padding untuk widget di mobile */
+@media (max-width: 480px) {
+  .widget {
+    padding: 1rem;
+  }
+  .widgetTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+  }
+  .postNumber {
+    font-size: 1.2rem;
+  }
+  .postTitle {
+    font-size: 0.9rem;
   }
 }

@@ -1,14 +1,41 @@
 // pages/amp/[slug].js
 import { gql } from '@apollo/client';
+// Asumsi 'initializeApollo' ada di lib/apolloClient
+// Jika tidak, Anda perlu menyediakannya
 import { initializeApollo } from '../../lib/apolloClient';
 
 export const config = { amp: true };
 
 export default function AmpPost({ post }) {
+  // Tambahkan beberapa gaya dasar untuk AMP jika belum ada di WordPress
   return (
     <article>
       <h1>{post.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      <style jsx amp-custom>{`
+        /* Tambahkan CSS spesifik AMP di sini */
+        body {
+          font-family: sans-serif;
+          margin: 0;
+          padding: 16px;
+        }
+        h1 {
+          font-size: 1.8em;
+          margin-bottom: 0.5em;
+          word-break: break-word; /* Tambahkan ini */
+        }
+        img {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: 1em 0;
+        }
+        p {
+          line-height: 1.6;
+          margin-bottom: 1em;
+          word-break: break-word; /* Tambahkan ini */
+        }
+      `}</style>
     </article>
   );
 }

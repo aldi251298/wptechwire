@@ -29,18 +29,17 @@ export default function Header() {
 
           {/* Search Form */}
           <div className={styles.searchContainer}>
-    <form onSubmit={handleSubmit} className={styles.searchForm}>
-  <div className={styles.searchBox}>
-    <input
-      type="search"
-      placeholder="Search..."
-      value={keyword}
-      onChange={(e) => setKeyword(e.target.value)}
-    />
-    <button type="submit" aria-label="Search"></button>
-  </div>
-</form>
-            
+            <form onSubmit={handleSubmit} className={styles.searchForm}>
+              <div className={styles.searchBox}>
+                <input
+                  type="search"
+                  placeholder="Search..."
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                />
+                <button type="submit" aria-label="Search"></button>
+              </div>
+            </form>
           </div>
         </div>
 

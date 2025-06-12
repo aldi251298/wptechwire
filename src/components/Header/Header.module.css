@@ -1,12 +1,10 @@
-
 /* src/components/Header/Header.module.css */
-
 
 /* Mengatur keseluruhan baris header */
 .header {
   width: 100%;
   background-color: #ffffff;
-  border-bottom: 1px solid #e0e0e0; /* Border bawah yang jelas seperti situs berita */
+  border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -16,7 +14,7 @@
 .headerContainer {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Mendorong grup kiri dan kanan ke ujung */
+  justify-content: space-between;
   max-width: var(--max-width-container);
   margin: 0 auto;
   padding: 0.75rem var(--padding-container);
@@ -26,24 +24,24 @@
 .headerLeft {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Memberi jarak antara logo dan search form */
+  gap: 1.5rem;
 }
 
 /* LOGO: sedikit lebih kecil agar pas */
 .logoImage {
-  max-height: 35px; /* Tinggi logo disesuaikan dengan header yang lebih pendek */
+  max-height: 35px;
   width: auto;
   display: block;
 }
 
 /* SEARCH FORM: lebih pendek dan lebih lebar */
 .searchContainer input {
-  width: 350px; /* Lebar search form dibuat lebih spesifik */
-  padding: 0.6rem 1rem; /* Padding atas-bawah dikurangi agar tidak terlalu tinggi */
+  width: 350px;
+  padding: 0.6rem 1rem;
   border: 1px solid #ddd;
-  border-radius: 5px; /* Ujung sedikit melengkung, khas situs berita */
+  border-radius: 5px;
   font-size: 0.9rem;
-  background-color: #f5f5f5; /* Latar sedikit abu-abu */
+  background-color: #f5f5f5;
 }
 
 .searchContainer input:focus {
@@ -52,26 +50,24 @@
   background-color: #fff;
 }
 
-/* Tidak ada perubahan signifikan untuk .logoContainer, .searchContainer, dan .navContainer karena pengaturannya sekarang ada di parent atau elemen di dalamnya */
 .navContainer {
   display: flex;
   align-items: center;
 }
+
 /* === RESPONSIVE UNTUK HEADER === */
 
 @media (max-width: 992px) {
-  /* Di tablet, kita perkecil sedikit form pencarian */
   .searchContainer input {
     width: 250px;
   }
 }
 
 @media (max-width: 768px) {
-  /* Di ponsel, kita ubah layout menjadi vertikal */
   .headerContainer {
     flex-direction: column;
     gap: 1rem;
-    padding: 1rem; /* Beri sedikit padding ekstra */
+    padding: 1rem;
   }
 
   .headerLeft {
@@ -86,7 +82,17 @@
   }
   
   .searchContainer input {
-    width: 100%; /* Buat input memenuhi layar */
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+  
+  .logoImage {
+    max-height: 30px;
   }
 
+  .navContainer {
+    width: 100%;
+    justify-content: center;
+  }
 }

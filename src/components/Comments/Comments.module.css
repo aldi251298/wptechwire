@@ -7,7 +7,7 @@
 }
 
 .sectionTitle {
-  font-size: 1.5rem; /* Ukuran judul dikecilkan */
+  font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 2rem;
   color: #111827;
@@ -17,19 +17,20 @@
 .commentList {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem; /* Jarak antar komentar sedikit dikurangi */
+  gap: 1.75rem;
 }
 
 .comment {
   display: flex;
-  gap: 1rem; /* Jarak antara avatar dan konten */
+  gap: 1rem;
 }
 
 .avatar {
-  width: 40px; /* Avatar diperkecil */
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   margin-top: 0.25rem;
+  flex-shrink: 0; /* Pastikan avatar tidak mengecil */
 }
 
 .commentBody {
@@ -41,21 +42,25 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.25rem;
+  flex-wrap: wrap; /* Biarkan header wrap jika terlalu panjang */
 }
 
 .authorName {
-  font-weight: 600; /* Sedikit lebih tebal */
+  font-weight: 600;
   color: #111827;
+  word-break: break-word; /* Tambahkan ini */
 }
 
 .commentDate {
   font-size: 0.8rem;
-  color: #9ca3af; /* Warna dibuat lebih pudar */
+  color: #9ca3af;
+  flex-shrink: 0; /* Jangan biarkan tanggal menyempit */
 }
 
 .commentContent {
-  color: #4b5563; /* Warna teks isi komentar */
+  color: #4b5563;
   line-height: 1.7;
+  word-break: break-word; /* Tambahkan ini */
 }
 
 .commentContent p:last-child {
@@ -72,7 +77,7 @@
 }
 
 .formTitle {
-  font-size: 1.3rem; /* Judul sedikit lebih kecil */
+  font-size: 1.3rem;
   font-weight: 700;
   margin-top: 0;
   margin-bottom: 1.5rem;
@@ -80,44 +85,44 @@
 
 .formSubtitle,
 .formGroup label {
-  display: none; /* Kita tetap sembunyikan ini untuk tampilan bersih */
+  display: none;
 }
 
 .formGroup {
-  margin-bottom: 1rem; /* Jarak antar field dikurangi */
+  margin-bottom: 1rem;
 }
 
 /* Ini adalah style kunci untuk input field yang baru */
 .formGroup textarea,
 .formGroup input {
   width: 100%;
-  padding: 0.65rem 1rem; /* Padding vertikal dikurangi agar lebih pendek */
-  border: 1px solid #d1d5db; /* Border tipis di sekelilingnya */
-  border-radius: 8px; /* Sudut yang melengkung halus */
-  font-size: 0.95rem; /* Ukuran font di dalam input dikecilkan */
+  padding: 0.65rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
   font-family: inherit;
-  background-color: #f9fafb; /* Latar belakang abu-abu sangat muda */
+  background-color: #f9fafb;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .formGroup textarea:focus,
 .formGroup input:focus {
   outline: none;
-  border-color: #3b82f6; /* Warna border biru saat aktif */
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); /* Efek 'glow' modern */
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .userInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem; /* Jarak antar input nama dan email dikurangi */
+  gap: 1rem;
 }
 
 .submitButton {
-  background-color: #2563eb; /* Warna biru yang lebih cerah */
+  background-color: #2563eb;
   color: white;
   border: none;
-  padding: 0.7rem 1.25rem; /* Tombol lebih kecil */
+  padding: 0.7rem 1.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   border-radius: 8px;
@@ -154,5 +159,10 @@
   .userInfo {
     grid-template-columns: 1fr;
     gap: 0;
+  }
+  .commentHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
   }
 }

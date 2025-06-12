@@ -30,7 +30,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 50%; /* Membuat tombol menjadi bulat */
+  border-radius: 50%;
   color: #fff;
   font-size: 1.2rem;
   text-decoration: none;
@@ -54,7 +54,6 @@
 .vk         { background-color: #4680C2; }
 .bluesky    { background-color: #0285FF; }
 .flipboard  { background-color: #E12828; }
-.scoopit    { background-color: #6aaa3e; }
 .email      { background-color: #888888; }
 
 .copyLink {
@@ -64,7 +63,7 @@
 }
 
 .copyLink.copied {
-  background-color: #16a34a; /* Warna hijau saat berhasil dicopy */
+  background-color: #16a34a;
   color: #fff;
   border-color: #16a34a;
 }
@@ -74,4 +73,20 @@
   font-size: 0.9rem;
   font-weight: 500;
   color: #16a34a;
+}
+
+/* === RESPONSIVE UNTUK TOMBOL SHARE === */
+@media (max-width: 480px) {
+  .buttonsGrid {
+    gap: 0.5rem;
+  }
+  .shareButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  .shareTitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
 }
