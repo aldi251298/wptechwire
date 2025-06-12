@@ -1,9 +1,5 @@
 // pages/amp/[slug].js
 import { gql } from '@apollo/client';
-// Asumsi 'initializeApollo' ada di lib/apolloClient
-// Jika tidak, Anda perlu menyediakannya
-import { initializeApollo } from '../../lib/apolloClient';
-
 export const config = { amp: true };
 
 export default function AmpPost({ post }) {
