@@ -1,12 +1,19 @@
 // src/wp-templates/front-page.js
 
-import { gql, useQuery } from '@apollo/client';
+import { gql } from '@apollo/client'; // Tetap butuh gql untuk menulis query
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../wp-templates/front-page.module.css';
+import styles from './front-page.module.css'; // Sesuaikan path jika berbeda
 import SEO from '../components/SEO';
 import CategoryBlockTechnology from '../components/CategoryBlockTechnology';
 
+// --- Faust.js Integration: Dapatkan client untuk getStaticProps ---
+// Ini penting. getClient akan mengembalikan instance Apollo Client yang sudah dikonfigurasi
+// oleh Faust.js menggunakan WORDPRESS_URL dari environment variables Anda.
+import { getClient } from '@faustjs/next'; 
+
+// === GraphQL Query untuk Homepage ===
+// Query ini sekarang akan digunakan oleh getStaticProps
 const GET_HOMEPAGE_DATA = gql`
   query GetHomepageData($first: Int!, $after: String) {
     page(id: 3266, idType: DATABASE_ID) {
@@ -40,12 +47,14 @@ const GET_HOMEPAGE_DATA = gql`
         }
       }
     }
-    popularPosts: posts(first: 20) {
+    popularPosts: posts(first: 20) { # Ambil lebih banyak untuk diurutkan
       nodes {
         id
         title
         uri
-        viewCount {
+        # Pastikan nama field ini sesuai dengan yang diekspos di GraphQL API Anda
+        # Jika itu custom field ACF, mungkin perlu diakses melalui 'customFields' atau yang serupa
+        viewCount { # Asumsi viewCount adalah objek dengan field viewCount di dalamnya
           viewCount
         }
       }
@@ -73,25 +82,35 @@ const GET_HOMEPAGE_DATA = gql`
         endCursor
       }
     }
+    # === Tambahan Query untuk Kategori Technology ===
+    # Asumsikan ID kategori untuk "Technology" adalah 2
+    # Jika Anda ingin filter berdasarkan slug, Anda perlu mengubah filter
+    techPosts: posts(where: { categoryId: 2 }, first: 5) { # Ganti ID kategori
+      nodes {
+        id
+        title
+        uri
+        featuredImage {
+          node {
+            sourceUrl
+          }
+        }
+      }
+    }
   }
 `;
 
-export default function FrontPage() {
-  const { data, loading, error, fetchMore } = useQuery(GET_HOMEPAGE_DATA, {
-    variables: { first: 6 },
-  });
-
-  if (loading && !data) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+export default function FrontPage({ data }) { // Menerima 'data' dari getStaticProps
+  // `loading` dan `error` tidak ada lagi karena data diambil di server
+  // `fetchMore` tidak digunakan secara langsung di komponen karena kita menggunakan SSG/ISR
+  // Jika Anda ingin Load More Stories, Anda perlu implementasi client-side fetching yang terpisah atau SSR.
+  // Untuk tujuan SSG/ISR murni, tombol "Load More" akan dihilangkan atau diimplementasikan secara berbeda.
 
   const seo = data?.page?.seo;
   const heroPosts = data?.heroPosts?.nodes ?? [];
   const latestPostsData = data?.latestPosts;
   const allPopularPosts = data?.popularPosts?.nodes ?? [];
-  // Perbaiki: query untuk 'technology' tidak ada di GET_HOMEPAGE_DATA
-  // Asumsi: 'techPosts' akan diambil melalui komponen CategoryBlockTechnology itu sendiri atau query terpisah
-  // Untuk saat ini, saya akan mengomentari atau mengasumsikan posts kosong jika tidak ada sumber
-  const techPosts = []; // Atau Anda perlu menambahkan query terpisah untuk ini.
+  const techPosts = data?.techPosts?.nodes ?? []; // Data teknologi sekarang datang dari query
 
   const sortedPopularPosts = [...allPopularPosts]
     .sort((a, b) => (b.viewCount?.viewCount || 0) - (a.viewCount?.viewCount || 0))
@@ -100,10 +119,15 @@ export default function FrontPage() {
   const mainHeroPost = heroPosts[0];
   const sideHeroPosts = heroPosts.slice(1, 5);
 
-  const handleLoadMore = () => {
-    if (!latestPostsData.pageInfo.hasNextPage || loading) return;
-    fetchMore({ variables: { after: latestPostsData.pageInfo.endCursor } });
-  };
+  // Fungsi handleLoadMore tidak akan berjalan secara langsung seperti sebelumnya
+  // karena data sudah statis. Jika Anda ingin "Load More" di halaman statis,
+  // Anda harus menggunakan client-side fetching terpisah atau beralih ke SSR untuk bagian itu.
+  // Untuk saat ini, saya akan mengomentari tombol Load More.
+  // const handleLoadMore = () => {
+  //   // Logika ini hanya berfungsi dengan useQuery
+  //   // if (!latestPostsData.pageInfo.hasNextPage || loading) return;
+  //   // fetchMore({ variables: { after: latestPostsData.pageInfo.endCursor } });
+  // };
 
   return (
     <>
@@ -141,8 +165,8 @@ export default function FrontPage() {
             ))}
           </div>
         </section>
-        {/* CategoryBlockTechnology harus menerima props `posts` dari sumber yang valid,
-            saat ini `techPosts` kosong karena tidak ada query yang mengambilnya. */}
+        
+        {/* CategoryBlockTechnology sekarang menerima data dari query */}
         <CategoryBlockTechnology posts={techPosts} /> 
 
         {/* === KONTEN UTAMA & SIDEBAR === */}
@@ -176,7 +200,9 @@ export default function FrontPage() {
                 </div>
               ))}
             </div>
-            {latestPostsData?.pageInfo.hasNextPage && (
+            {/* Tombol Load More Stories tidak berfungsi langsung dengan SSG/ISR murni
+                Anda perlu implementasi client-side fetching terpisah jika ingin fitur ini */}
+            {/* {latestPostsData?.pageInfo.hasNextPage && (
               <button
                 onClick={handleLoadMore}
                 disabled={loading}
@@ -184,7 +210,7 @@ export default function FrontPage() {
               >
                 {loading ? 'Loading...' : 'Load More Stories'}
               </button>
-            )}
+            )} */}
           </section>
 
           <aside className={styles.sidebar}>
@@ -204,4 +230,35 @@ export default function FrontPage() {
       </main>
     </>
   );
+}
+
+// === FUNGSI getStaticProps untuk Homepage (ISR) ===
+// Fungsi ini akan dijalankan Next.js di sisi server (saat build atau saat regenerasi).
+export async function getStaticProps(context) {
+  const client = getClient(); // Dapatkan instance Apollo Client dari Faust.js
+
+  // Jalankan query GraphQL yang sudah Anda definisikan di atas
+  const { data } = await client.query({
+    query: GET_HOMEPAGE_DATA,
+    variables: { first: 6 }, // Sesuaikan variabel seperti 'first' untuk jumlah postingan awal
+  });
+
+  // Pastikan data yang diperlukan ada
+  if (!data) {
+    return {
+      notFound: true, // Akan menampilkan halaman 404 Next.js jika tidak ada data
+      revalidate: 60, // Coba lagi validasi setelah 60 detik jika halaman 404
+    };
+  }
+
+  return {
+    props: {
+      data: data, // Teruskan data ke komponen FrontPage sebagai props
+    },
+    revalidate: 3600, // ISR: Halaman ini akan diregenerasi setiap 3600 detik (1 jam)
+    // Sesuaikan nilai 'revalidate' (dalam detik) berdasarkan seberapa sering Anda ingin homepage diperbarui.
+    // - `3600` (1 jam): Pilihan yang bagus jika konten homepage diupdate beberapa kali sehari.
+    // - `600` (10 menit): Jika Anda ingin homepage lebih sering diperbarui, tapi ini akan membebani backend.
+    // - `86400` (24 jam): Untuk homepage yang jarang sekali berubah.
+  };
 }
