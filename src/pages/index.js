@@ -85,7 +85,7 @@ const GET_HOMEPAGE_DATA = gql`
     # === Tambahan Query untuk Kategori Technology ===
     # Asumsikan ID kategori untuk "Technology" adalah 2
     # Jika Anda ingin filter berdasarkan slug, Anda perlu mengubah filter
-    techPosts: posts(where: { categoryId: 2 }, first: 5) { # Ganti ID kategori
+    techPosts: posts(where: { categoryId: 10 }, first: 5) { # Ganti ID kategori
       nodes {
         id
         title
